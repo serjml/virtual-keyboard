@@ -1,17 +1,17 @@
 @font-face {
   font-family: 'Arial';
-  src: url("/shelter/assets/fonts/ArialMT.ttf");  
+  src: url("../../assets/fonts/ArialMT.ttf");  
 }
 
 @font-face {
   font-family: 'Arial';
-  src: url("/shelter/assets/fonts/Arial-ItalicMT.ttf");
+  src: url("../../assets/fonts/Arial-ItalicMT.ttf");
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Georgia';
-  src: url("/shelter/assets/fonts/Georgia.ttf");  
+  src: url("../../assets/fonts/Georgia.ttf");  
 }
 
 /* ------------------------------------------- */
@@ -39,7 +39,7 @@ body {
 }
 
 .header {
-  background: url('/shelter/assets/img/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+  background: url('../../assets/img/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .header-container {
@@ -135,7 +135,7 @@ body {
 .start-section {
   padding-top: 60px;
   height: 788px;
-  background: url('/shelter/assets/img/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+  background: url('../../assets/img/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
   background-position-y:  -120px;
 
 }
@@ -257,12 +257,12 @@ h3 {
   margin-right: 53px;
   border: 2px solid #F1CDB3;
   border-radius: 50%;
-  background: url('/shelter/assets/svg/arrow.svg') no-repeat;
+  background: url('../../assets/svg/arrow.svg') no-repeat;
   background-position: center;  
 }
 
 .pets-arrow:hover {
-  background: url('/shelter/assets/svg/arrow-hover.svg') no-repeat;
+  background: url('../../assets/svg/arrow-hover.svg') no-repeat;
   background-position: center;
   border: 2px solid #FDDCC4;
   cursor: pointer;
@@ -279,18 +279,18 @@ h3 {
   height: 435px;
   padding-top: 300px;
   margin-right: 90px;
-  background: #FAFAFA url('/shelter/assets/img/pets-katrine.jpg') no-repeat;
+  background: #FAFAFA url('../../assets/img/pets-katrine.jpg') no-repeat;
   border-radius: 9px;
   transition: 0.3s;
 }
 
 .pets-card:nth-child(3) {
-  background: #FAFAFA url('/shelter/assets/img/pets-jennifer.jpg') no-repeat;  
+  background: #FAFAFA url('../../assets/img/pets-jennifer.jpg') no-repeat;  
 }
 
 .pets-card:nth-child(4) {
   margin: 0;
-  background: #FAFAFA url('/shelter/assets/img/pets-woody.jpg') no-repeat;
+  background: #FAFAFA url('../../assets/img/pets-woody.jpg') no-repeat;
 }
 
 .pets-card:hover {  
@@ -364,56 +364,56 @@ h3 {
   justify-content: center;
   height: 113px;
   margin: 0 120px 55px 0;
-  background: url('/shelter/assets/svg/icon-pet-food.svg') no-repeat;
+  background: url('../../assets/svg/icon-pet-food.svg') no-repeat;
   background-position: center 0;
 }
 
 .help-item:nth-child(2) {
-  background: url('/shelter/assets/svg/icon-transportation.svg') no-repeat;
+  background: url('../../assets/svg/icon-transportation.svg') no-repeat;
   background-position: center 0;
 }
 
 .help-item:nth-child(3) {
   width: 60px;
-  background: url('/shelter/assets/svg/icon-toys.svg') no-repeat;
+  background: url('../../assets/svg/icon-toys.svg') no-repeat;
   background-position: center 0;
 }
 
 .help-item:nth-child(4) {
   margin-right: 119px;
-  background: url('/shelter/assets/svg/icon-bowls-and-cups.svg') no-repeat;
+  background: url('../../assets/svg/icon-bowls-and-cups.svg') no-repeat;
   background-position: center 0;
 }
 
 .help-item:nth-child(5) {
   margin-right: 0;
-  background: url('/shelter/assets/svg/icon-shampoos.svg') no-repeat;
+  background: url('../../assets/svg/icon-shampoos.svg') no-repeat;
   background-position: center 0;
 }
 
 .help-item:nth-child(6) {
   margin: 0 120px 0 86px;
-  background: url('/shelter/assets/svg/icon-vitamins.svg') no-repeat;
+  background: url('../../assets/svg/icon-vitamins.svg') no-repeat;
   background-position: center 0;
 }
 
 .help-item:nth-child(7) {
   margin-right: 119px;
   margin-bottom: 0;
-  background: url('/shelter/assets/svg/icon-medicines.svg') no-repeat;
+  background: url('../../assets/svg/icon-medicines.svg') no-repeat;
   background-position: center 0;
 }
 
 .help-item:nth-child(8) {
   margin-right: 119px;
   margin-bottom: 0;
-  background: url('/shelter/assets/svg/icon-collars-leashes.svg') no-repeat;
+  background: url('../../assets/svg/icon-collars-leashes.svg') no-repeat;
   background-position: center 0;
 }
 
 .help-item:nth-child(9) {
   margin: 0 ;
-  background: url('/shelter/assets/svg/icon-sleeping-area.svg') no-repeat;
+  background: url('../../assets/svg/icon-sleeping-area.svg') no-repeat;
   background-position: center 0;
 }
 
@@ -472,13 +472,13 @@ h3 {
   line-height: 23px;
   letter-spacing: 0.06em;
   color: #545454;
-  background: #F1CDB3 url('/shelter/assets/svg/credit-card.svg') no-repeat;
+  background: #F1CDB3 url('../../assets/svg/credit-card.svg') no-repeat;
   background-position: 15px center;
   border-radius: 9px;
 }
 
 .donation-credit-card:hover {
-  background: #FDDCC4 url('/shelter/assets/svg/credit-card.svg') no-repeat;
+  background: #FDDCC4 url('../../assets/svg/credit-card.svg') no-repeat;
   background-position: 15px center;
   cursor: pointer; 
 }
@@ -494,7 +494,7 @@ h3 {
 
 .footer {
   padding-top: 40px;
-  background: url('/shelter/assets/img/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+  background: url('../../assets/img/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .footer-content {
@@ -529,12 +529,12 @@ h3 {
   height: 32px;
   margin-bottom: 40px;
   padding: 5px 0 4px 60px;  
-  background: url('/shelter/assets/svg/icon-email.svg') no-repeat;
+  background: url('../../assets/svg/icon-email.svg') no-repeat;
 }
 
 .footer-contact-item:last-child {
   margin: 0;
-  background: url('/shelter/assets/svg/icon-phone.svg') no-repeat;
+  background: url('../../assets/svg/icon-phone.svg') no-repeat;
 }
 
 .footer-location {
@@ -550,7 +550,7 @@ h3 {
   height: 46px;
   padding-left: 42px;
   margin-bottom: 32px;
-  background: url('/shelter/assets/svg/icon-marker.svg') no-repeat;
+  background: url('../../assets/svg/icon-marker.svg') no-repeat;
   background-position: 0 center;
 }
 
