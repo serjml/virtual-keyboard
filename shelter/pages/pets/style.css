@@ -132,3 +132,51 @@
   border-color: #CDCDCD;
   cursor: default;
 }
+
+@media screen and (max-width: 1279px) {
+
+  /* .wrapper {
+    width: calc(100% - 60px);
+  }  */
+
+  .header-ourpets {
+    height: 120px;
+  }
+
+  .pets-section-ourpets {
+    padding: 200px 0 76px;
+  }
+
+  .pets-content {
+    padding: 0 64px;
+  }
+
+  .pets-title {
+    margin-bottom: 30px;
+  }
+
+  .ourpets-container {    
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+  }
+
+  .pets-card:nth-child(2) {
+    margin: 0;
+  }
+
+  .ourpets-card:nth-child(4) {
+    display: block;
+  }
+
+  .ourpets-card:nth-child(7),
+  .ourpets-card:nth-child(8) {
+    display: none;
+  }
+
+
+
+  
+}
