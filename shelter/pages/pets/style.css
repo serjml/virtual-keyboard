@@ -133,11 +133,7 @@
   cursor: default;
 }
 
-@media screen and (max-width: 1279px) {
-
-  /* .wrapper {
-    width: calc(100% - 60px);
-  }  */
+@media screen and (max-width: 1279px) { 
 
   .header-ourpets {
     height: 120px;
@@ -174,9 +170,49 @@
   .ourpets-card:nth-child(7),
   .ourpets-card:nth-child(8) {
     display: none;
+  }  
+}
+
+@media screen and (max-width: 767px) {
+
+  .hamburger-line,
+  .hamburger:before,
+  .hamburger:after {
+    background: #000000;
   }
 
+  .pets-section-ourpets {
+    padding: 162px 0 42px;
+  }
+ 
+  .pets-content {
+    padding: 0;
+  }
 
+  .pets-title {
+    margin-bottom: 42px;
+  }
 
-  
+  .ourpets-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    margin-bottom: 42px;
+  }
+
+  .ourpets-card:nth-child(2) {
+    order: 0;
+  }
+
+  .ourpets-card:nth-child(3) {
+    display: block;
+  }
+
+  .ourpets-card:nth-child(n+4) {
+    display: none;
+  }
+ 
+  .ourpets-pagination {
+    gap: 10px;    
+  }
 }
