@@ -8,8 +8,7 @@
   <link rel="icon" href="../../assets/svg/favicon.png" type="image/x-icon">
   <title>shelter</title>
 </head>
-<body>
-  
+<body>  
   <header class="header">
     <div class="header-container wrapper">      
       <div class="logo">
@@ -21,7 +20,14 @@
       <div class="hamburger">
         <span class="hamburger-line"></span>
       </div>
-      <nav class="nav">
+      <div class="overlay"></div>
+      <nav class="nav">        
+        <div class="logo-burger">
+          <a href="" class="logo-link">
+            <h1 class="title">Cozy House</h1>
+            <p class="subtitle">Shelter for pets in Boston</p>
+          </a>        
+        </div>
         <ul class="nav-list">
           <li class="nav-item">
             <a href="../../pages/main/index.html" class="nav-link active">About the shelter</a>
@@ -76,7 +82,7 @@
           <h3 class="pets-title">Our friends who<br>are looking for a house</h3>
           <div class="pets-slider">
             <div class="pets-arrow"></div>
-            <div class="pets-card">
+           <!-- <div class="pets-card">
               <p class="pet-name">Katrine</p>
               <button class="pet-btn btn">Learn more</button>
             </div>
@@ -87,7 +93,46 @@
             <div class="pets-card">
               <p class="pet-name">Woody</p>
               <button class="pet-btn btn">Learn more</button>
+            </div> -->
+            <div class="pets-card-container">
+              <div class="pets-card">
+                <p class="pet-name">Katrine</p>
+                <button class="pet-btn btn">Learn more</button>
+              </div>
+              <div class="pets-card">
+                <p class="pet-name">Jennifer</p>
+                <button class="pet-btn btn">Learn more</button>
+              </div>
+              <div class="pets-card">
+                <p class="pet-name">Woody</p>
+                <button class="pet-btn btn">Learn more</button>
+              </div>
+              <div class="pets-card hidden">
+                <p class="pet-name">Sophia</p>
+                <button class="pet-btn btn">Learn more</button>
+              </div>
+              <div class="pets-card hidden">
+                <p class="pet-name">Timmy</p>
+                <button class="pet-btn btn">Learn more</button>
+              </div>
+              <div class="pets-card hidden">
+                <p class="pet-name">Charly</p>
+                <button class="pet-btn btn">Learn more</button>
+              </div>
+              <div class="pets-card hidden">
+                <p class="pet-name">Scarlett</p>
+                <button class="pet-btn btn">Learn more</button>
+              </div>
+              <div class="pets-card hidden">
+                <p class="pet-name">Freddie</p>
+                <button class="pet-btn btn">Learn more</button>
+              </div> 
             </div>
+              
+
+
+
+
             <div class="pets-arrow"></div>
           </div>
           <form action="../../pages/pets/index.html">
@@ -174,5 +219,6 @@
     </div>
   </footer>
 
+  <script src="./index.js"></script>
 </body>
 </html>
