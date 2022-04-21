@@ -3,6 +3,7 @@ const burger = document.querySelector('.hamburger');
 const nav = document.querySelector('.nav');
 const overlay = document.querySelector('.overlay');
 const body = document.querySelector('body');
+const navLink = document.querySelectorAll('.nav-link');
 
 function toggleMenu() {
   burger.classList.toggle('open');
@@ -19,6 +20,9 @@ function closeMenu() {
   body.classList.remove('open');
 }
 overlay.addEventListener('click', closeMenu);
+
+navLink.forEach(el => el.addEventListener('click', closeMenu));
+
 // Burger end-----------------------------------------
 
 // Slider start---------------------------------------
@@ -184,19 +188,9 @@ overlay.addEventListener('click', closeMenu);
 
     arrowLeft.addEventListener('click', moveLeftMobile);
     arrowRight.addEventListener('click', moveRightMobile);
-  }
-
- 
-
-
-
-
-
-
-  
-
-  
+  }  
   // Slider end---------------------------------------
+
 
 
 

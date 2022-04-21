@@ -178,9 +178,27 @@
   .hamburger-line,
   .hamburger:before,
   .hamburger:after {
-    background: #000000;
+    background: #545454;
   }
 
+  nav.open {
+    background-color: #ffffff;
+  }
+
+  .logo-link-ourpets {
+    text-decoration: none;
+    color: #292929;  
+  }
+  
+  .title-ourpets {
+    padding-top: 1px;
+    color: #545454;
+  }
+  
+  .nav-link-ourpets {
+    color: #545454;
+  }
+  
   .pets-section-ourpets {
     padding: 162px 0 42px;
   }
