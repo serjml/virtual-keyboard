@@ -60,7 +60,6 @@ navLink.forEach(el => el.addEventListener('click', closeMenu));
         container.classList.remove('leave-right');
         container.classList.add('appear-right');  
       }      
-      
     });
 
     function changeCard() {
@@ -93,8 +92,8 @@ navLink.forEach(el => el.addEventListener('click', closeMenu));
       }  
     }
     
-    arrowLeft.addEventListener('click', moveLeft);
-    arrowRight.addEventListener('click', moveRight);
+    arrowRight.addEventListener('click', moveLeft);
+    arrowLeft.addEventListener('click', moveRight);
   }
 
 
@@ -145,8 +144,8 @@ navLink.forEach(el => el.addEventListener('click', closeMenu));
         return secondCard 
       }  
     } 
-    arrowLeft.addEventListener('click', moveLeftTablet);
-    arrowRight.addEventListener('click', moveRightTablet);
+    arrowRight.addEventListener('click', moveLeftTablet);
+    arrowLeft.addEventListener('click', moveRightTablet);
   }  
 
   if (document.documentElement.clientWidth < 768) {
@@ -186,8 +185,8 @@ navLink.forEach(el => el.addEventListener('click', closeMenu));
       petsShow = pets.filter(el => getComputedStyle(el).display == 'block');      
     }
 
-    arrowLeft.addEventListener('click', moveLeftMobile);
-    arrowRight.addEventListener('click', moveRightMobile);
+    arrowRight.addEventListener('click', moveLeftMobile);
+    arrowLeft.addEventListener('click', moveRightMobile);
   }  
   // Slider end---------------------------------------
 
