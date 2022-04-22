@@ -133,6 +133,10 @@
   cursor: default;
 }
 
+.popup-container {
+  z-index: 11;
+}
+
 @media screen and (max-width: 1279px) { 
 
   .header-ourpets {
