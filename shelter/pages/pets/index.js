@@ -22,11 +22,9 @@ function closeMenu() {
 overlay.addEventListener('click', closeMenu);
 
 navLink.forEach(el => el.addEventListener('click', closeMenu));
-
 // -----------------------BURGER---END-----------------------------------
 
 // ---------------------PAGINATION----START-------------------------------
-
 const FIRST_PAGE = document.querySelector('#pagination-btn-first');
 const LEFT_PAGE = document.querySelector('#pagination-btn-left');
 const CURRENT_PAGE = document.querySelector('#pagination-page');
@@ -36,6 +34,7 @@ const PET_NAME = document.querySelectorAll('.pet-name');
 let OURPETS_CONTAINER = document.querySelector('.ourpets-container');
 let curPage = 1;
 let randomArrayPets = [];
+let petsNew;
 const petsJson = [
   {
     "name": "Katrine",
@@ -163,33 +162,42 @@ if (document.documentElement.clientWidth >= 1280) {
     }
   }
   generateArrayPets();
-  
+ 
   addRandomCardStart(1);
+
+  function genPetsNew(page) {
+    petsNew = document.querySelectorAll('.ourpets-card');
+    petsNew.forEach((el, i) => el.addEventListener('click', () => {
+      getPetsCard(((page - 1) * 8) + i)
+    }));  
+  }
+  genPetsNew(1);  
   
   function addRandomCardStart(arg) {
     OURPETS_CONTAINER.innerHTML = '';
     let card1 = createCard(((arg - 1) * 8) + 0);
-    OURPETS_CONTAINER.append(card1)
+    OURPETS_CONTAINER.append(card1);
     let card2 = createCard(((arg - 1) * 8) + 1);
-    OURPETS_CONTAINER.append(card2)
+    OURPETS_CONTAINER.append(card2);
     let card3 = createCard(((arg - 1) * 8) + 2);
-    OURPETS_CONTAINER.append(card3)
+    OURPETS_CONTAINER.append(card3);
     let card4 = createCard(((arg - 1) * 8) + 3);
-    OURPETS_CONTAINER.append(card4)
+    OURPETS_CONTAINER.append(card4);
     let card5 = createCard(((arg - 1) * 8) + 4);
-    OURPETS_CONTAINER.append(card5)
+    OURPETS_CONTAINER.append(card5);
     let card6 = createCard(((arg - 1) * 8) + 5);
-    OURPETS_CONTAINER.append(card6)
+    OURPETS_CONTAINER.append(card6);
     let card7 = createCard(((arg - 1) * 8) + 6);
-    OURPETS_CONTAINER.append(card7)
+    OURPETS_CONTAINER.append(card7);
     let card8 = createCard(((arg - 1) * 8) + 7);
-    OURPETS_CONTAINER.append(card8)
+    OURPETS_CONTAINER.append(card8);       
   }  
 
   function flipRight() {
-    curPage++;  
-    addRandomCardStart(curPage)
+    curPage++;    
+    addRandomCardStart(curPage);   
     CURRENT_PAGE.innerHTML = curPage;
+    genPetsNew(curPage);  
     FIRST_PAGE.classList.remove('disable');
     LEFT_PAGE.classList.remove('disable');
     FIRST_PAGE.classList.add('able');
@@ -201,14 +209,15 @@ if (document.documentElement.clientWidth >= 1280) {
       LAST_PAGE.classList.remove('able');
       RIGHT_PAGE.classList.remove('able');
       RIGHT_PAGE.removeEventListener('click', flipRight);
-    }
+    }    
   }
-  RIGHT_PAGE.addEventListener('click', flipRight);
+  RIGHT_PAGE.addEventListener('click', flipRight);  
   
   function flipLeft() {
     curPage--;
     addRandomCardStart(curPage)
     CURRENT_PAGE.innerHTML = curPage;
+    genPetsNew(curPage);
     LAST_PAGE.classList.remove('disable');
     RIGHT_PAGE.classList.remove('disable');
     LAST_PAGE.classList.add('able');
@@ -261,7 +270,7 @@ if ((document.documentElement.clientWidth < 1280) && (document.documentElement.c
       return randomArrayPets;
     }
   }
-  generateArrayPetsForTablet();  
+  generateArrayPetsForTablet();
   
   function addRandomCardStartForTablet(arg) {
     OURPETS_CONTAINER.innerHTML = '';
@@ -278,12 +287,21 @@ if ((document.documentElement.clientWidth < 1280) && (document.documentElement.c
     let card6 = createCard(((arg - 1) * 6) + 5);
     OURPETS_CONTAINER.append(card6)
   }
-  addRandomCardStartForTablet(1);  
+  addRandomCardStartForTablet(1); 
+  
+  function genPetsNewForTablet(page) {
+    petsNew = document.querySelectorAll('.ourpets-card');
+    petsNew.forEach((el, i) => el.addEventListener('click', () => {
+      getPetsCard(((page - 1) * 6) + i)
+    }));  
+  }
+  genPetsNewForTablet(1); 
 
   function flipRightForTablet() {
     curPage++;  
-    addRandomCardStartForTablet(curPage)
+    addRandomCardStartForTablet(curPage);
     CURRENT_PAGE.innerHTML = curPage;
+    genPetsNewForTablet(curPage);
     FIRST_PAGE.classList.remove('disable');
     LEFT_PAGE.classList.remove('disable');
     FIRST_PAGE.classList.add('able');
@@ -301,8 +319,9 @@ if ((document.documentElement.clientWidth < 1280) && (document.documentElement.c
   
   function flipLeftForTablet() {
     curPage--;
-    addRandomCardStartForTablet(curPage)
+    addRandomCardStartForTablet(curPage);
     CURRENT_PAGE.innerHTML = curPage;
+    genPetsNewForTablet(curPage)
     LAST_PAGE.classList.remove('disable');
     RIGHT_PAGE.classList.remove('disable');
     LAST_PAGE.classList.add('able');
@@ -366,12 +385,21 @@ if (document.documentElement.clientWidth < 768) {
     let card3 = createCard(((arg - 1) * 3) + 2);
     OURPETS_CONTAINER.append(card3)
   }
-  addRandomCardStartForMobile(1);  
+  addRandomCardStartForMobile(1);
+  
+  function genPetsNewForMobile(page) {
+    petsNew = document.querySelectorAll('.ourpets-card');
+    petsNew.forEach((el, i) => el.addEventListener('click', () => {
+      getPetsCard(((page - 1) * 3) + i)
+    }));  
+  }
+  genPetsNewForMobile(1); 
 
   function flipRightForMobile() {
     curPage++;  
-    addRandomCardStartForMobile(curPage)
+    addRandomCardStartForMobile(curPage);
     CURRENT_PAGE.innerHTML = curPage;
+    genPetsNewForMobile(curPage);
     FIRST_PAGE.classList.remove('disable');
     LEFT_PAGE.classList.remove('disable');
     FIRST_PAGE.classList.add('able');
@@ -389,8 +417,9 @@ if (document.documentElement.clientWidth < 768) {
   
   function flipLeftForMobile() {
     curPage--;
-    addRandomCardStartForMobile(curPage)
+    addRandomCardStartForMobile(curPage);
     CURRENT_PAGE.innerHTML = curPage;
+    genPetsNewForMobile(curPage);
     LAST_PAGE.classList.remove('disable');
     RIGHT_PAGE.classList.remove('disable');
     LAST_PAGE.classList.add('able');
@@ -418,11 +447,9 @@ if (document.documentElement.clientWidth < 768) {
   }
   FIRST_PAGE.addEventListener('click', flipFirstForMobile);
 }
-
 // ---------------------PAGINATION----END---------------------------------
 
 // ---------------------POPUP----START-----------------------------------
-
 const popupContainer = document.querySelector('.popup-container');
 const popupOverlay = document.querySelector('.popup-overlay');
 const popupBtn = document.querySelector('.popup-close');
@@ -436,17 +463,7 @@ const inoculationsPet = document.querySelector('.inoculations');
 const diseasesPet = document.querySelector('.diseases');
 const parasitesPet = document.querySelector('.parasites');
 
-
-// асинхронная функция для JSON 
-async function getPetsInfo(index) { // индекс карточки питомца из массива по нажатию
-  const url = 'pets.json';
-  const result = await fetch(url);
-  const data = await result.json();
-  geniratePets(data[index]);        // данные обьекта из JSON стем же индексом вставляем в функцию создания карточки питомца     
-  showPetInfo();                   // запуск функции показа попап окна
-}
-// функция создание карточки питомца 
-function geniratePets(pets) {       // аргумент из ассинхронной функции 
+function geniratePets(pets) {       
   namePet.innerHTML = pets['name'];
   imgPet.src = pets['img'];
   typePet.innerHTML = pets['type'];
@@ -457,18 +474,18 @@ function geniratePets(pets) {       // аргумент из ассинхрон�
   diseasesPet.innerHTML = pets['diseases'];
   parasitesPet.innerHTML = pets['parasites'];
 }
+
+function getPetsCard(index) { 
+  geniratePets(randomArrayPets[index]);     
+  showPetInfo();               
+}
+
 // функция показа попап окна
 function showPetInfo() {
   popupContainer.style.display = 'block';
-  body.classList.toggle('open');
+  body.classList.toggle('open');  
 }
 
-// обработчик собитий на карточки питомцев
-pets.forEach((el, i) => {                     // i - индекс питомца, передаю в асинхронную ф-ю
-  el.addEventListener('click', () => {
-    getPetsInfo(i)                            // i - индекс питомца, передаю в асинхронную ф-ю
-  });
-})
 // закрытие попап окна 
 function closePopup() {
   popupContainer.style.display = 'none';
@@ -477,5 +494,4 @@ function closePopup() {
 
 popupBtn.addEventListener('click', closePopup);
 popupOverlay.addEventListener('click', closePopup);
-
 // ---------------------POPUP----END-------------------------------------
