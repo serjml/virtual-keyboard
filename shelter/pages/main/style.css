@@ -357,12 +357,15 @@ h3 {
 .pets-card {
   width: 270px;
   height: 435px;
-  padding-top: 300px;  
-  background: #FAFAFA url('../../assets/img/pets-katrine.jpg') no-repeat;
+  background: #FAFAFA;
   border-radius: 9px;  
 }
 
-.pets-card:nth-child(2) {
+.pets-card-img {
+  margin-bottom: 30px;
+}
+
+/* .pets-card:nth-child(2) {
   background: #FAFAFA url('../../assets/img/pets-jennifer.jpg') no-repeat;  
 }
 
@@ -388,7 +391,7 @@ h3 {
 
 .pets-card:nth-child(8) {
   background: #FAFAFA url('../../assets/img/pets-freddie.jpg') no-repeat;
-}
+} */
 
 .pets-card:hover {  
   background-color: #ffffff;

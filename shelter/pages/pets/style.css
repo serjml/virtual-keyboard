@@ -57,35 +57,17 @@
 }
 
 .ourpets-card {
-  margin: 0;  
+  margin: 0;
+  animation: appear 0.5s;  
 }
 
-.ourpets-card:nth-child(2) {
-  background: #fafafa url('../../assets/img/pets-jennifer.jpg') no-repeat;
-}
-
-.ourpets-card:nth-child(3) {
-  background: #fafafa url('../../assets/img/pets-woody.jpg') no-repeat;
-}
-
-.ourpets-card:nth-child(4) {
-  background: #fafafa url('../../assets/img/pets-sophia.jpg') no-repeat;
-}
-
-.ourpets-card:nth-child(5) {
-  background: #fafafa url('../../assets/img/pets-timmy.jpg') no-repeat;
-}
-
-.ourpets-card:nth-child(6) {
-  background: #fafafa url('../../assets/img/pets-charly.jpg') no-repeat;
-}
-
-.ourpets-card:nth-child(7) {
-  background: #fafafa url('../../assets/img/pets-scarlet.jpg') no-repeat;
-}
-
-.ourpets-card:nth-child(8) {
-  background: #fafafa url('../../assets/img/pets-freddie.jpg') no-repeat;
+@keyframes appear {
+  from {    
+    opacity: 0;
+  }  
+  to {       
+    opacity: 1; 
+  }
 }
 
 .ourpets-card:hover {
@@ -118,7 +100,8 @@
 .active-btn {
   background-color:#F1CDB3;
   background-position: center;
-  cursor: default; 
+  cursor: default;
+  transition: 0.3s; 
 }
 
 .able:hover {
