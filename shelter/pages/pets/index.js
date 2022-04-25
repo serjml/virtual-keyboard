@@ -483,7 +483,8 @@ function getPetsCard(index) {
 // функция показа попап окна
 function showPetInfo() {
   popupContainer.style.display = 'block';
-  body.classList.toggle('open');  
+  body.classList.toggle('open');
+  popupContainer.classList.add('starts');
 }
 
 // закрытие попап окна 

@@ -226,7 +226,8 @@ function geniratePets(pets) {       // аргумент из ассинхрон�
 // функция показа попап окна
 function showPetInfo() {
   popupContainer.style.display = 'block';
-  body.classList.toggle('open');   
+  body.classList.toggle('open');
+  popupContainer.classList.add('starts');  
 }
 // обработчик собитий на карточки питомцев
 pets.forEach((el, i) => {                     // i - индекс питомца, передаю в асинхронную ф-ю
