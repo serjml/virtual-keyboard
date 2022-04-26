@@ -203,6 +203,7 @@ const inoculationsPet = document.querySelector('.inoculations');
 const diseasesPet = document.querySelector('.diseases');
 const parasitesPet = document.querySelector('.parasites');
 
+
 // асинхронная функция для JSON 
 async function getPetsInfo(index) { // индекс карточки питомца из массива по нажатию
   const url = 'pets.json';             
@@ -241,9 +242,15 @@ function closePopup() {
   body.classList.remove('open');
 }
   
+
 popupBtn.addEventListener('click', closePopup);
 popupOverlay.addEventListener('click', closePopup);
-
+popupOverlay.addEventListener('mouseover', () => {
+  popupBtn.classList.add('popup-hover')
+})
+popupOverlay.addEventListener('mouseout', () => {
+  popupBtn.classList.remove('popup-hover')
+})
 // ---------------------POPUP----END-------------------------------------
 
 

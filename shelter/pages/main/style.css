@@ -754,6 +754,11 @@ body.open {
   border: 2px solid #FDDCC4;
 }
 
+.popup-hover {
+  background: #FDDCC4 url('../../assets/svg/close.svg') no-repeat;
+  background-position: center;
+  border: 2px solid #FDDCC4;
+}
 /* --------------------------POPUP-----END------------------------ */
 
 @media screen and (max-width: 1279px) {
