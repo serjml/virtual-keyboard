@@ -495,4 +495,10 @@ function closePopup() {
 
 popupBtn.addEventListener('click', closePopup);
 popupOverlay.addEventListener('click', closePopup);
+popupOverlay.addEventListener('mouseover', () => {
+  popupBtn.classList.add('popup-hover')
+})
+popupOverlay.addEventListener('mouseout', () => {
+  popupBtn.classList.remove('popup-hover')
+})
 // ---------------------POPUP----END-------------------------------------
