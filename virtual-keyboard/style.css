@@ -1,0 +1,50 @@
+.container {
+  margin: 0 auto;
+  width: 750px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.title,
+.description,
+.combination {
+  text-align: center;
+}
+
+.textarea {
+  display: block;
+  width: 700px;
+  height: 200px;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 20px;
+  resize: none;
+}
+
+.keyboard {
+  width: 700px;
+  margin: 0 auto;
+  padding: 5px;
+  /* padding-left: 0;
+  padding-bottom: 0; */
+  background: #e6e6e6;
+  border: 3px solid #cccccc;
+  border-radius: 5px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.key {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  
+}
