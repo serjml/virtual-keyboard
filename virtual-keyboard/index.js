@@ -1,4 +1,3 @@
-
 // массив из 5 рядов  
 // каждый ряд массив
 // каждая кнопка массив [code, en, en-shift, ru, ru-shift];
@@ -20,7 +19,7 @@ const keysRows = [
     ['Backspace', '⇦', 'BACKSPACE', 'BACKSPACE', 'BACKSPACE'],
   ],
   [
-    ['TAB','TAB', 'TAB', 'TAB', 'TAB'],
+    ['Tab','TAB', 'TAB', 'TAB', 'TAB'],
     ['KeyQ', 'q', 'Q', 'й', 'Й'],
     ['KeyW', 'w', 'W', 'ц', 'Ц'],
     ['KeyE', 'e', 'E', 'у', 'У'],
@@ -79,3 +78,50 @@ const keysRows = [
   ],
 ]
 
+// создание контейнера с элементами
+const container = document.createElement('div');
+container.className = 'container';
+document.body.append(container);
+
+const title = document.createElement('h1');
+title.className = 'title';
+container.append(title);
+title.innerText = 'RSS Виртуальная клавиатура';
+
+const textarea = document.createElement('textarea');
+textarea.className = 'textarea';
+textarea.setAttribute('id', 'textarea');
+textarea.removeAttribute('style');
+container.append(textarea);
+
+const keyboard = document.createElement('div');
+keyboard.className = 'keyboard';
+keyboard.setAttribute('id', 'keyboard');
+container.append(keyboard);
+
+const description = document.createElement('p');
+description.className = 'description';
+container.append(description);
+description.innerText = 'Клавиатура создана в операционной системе Windows';
+
+const combination = document.createElement('p');
+combination.className = 'combination';
+container.append(combination);
+combination.innerText = 'Для переключения языка комбинация: левыe ctrl + alt';
+
+// создание кнопок клавиатуры
+function createKeys() {
+  for (let i = 0; i < keysRows.length; i++ ) {
+    const row = document.createElement('div');
+    row.className = 'row';
+    keyboard.append(row);
+    
+    for (let j = 0; j < keysRows[i].length; j++) {
+      const key = document.createElement('div');
+      key.className = `key ${keysRows[i][j][0]}`;
+      row.append(key)
+      key.innerText = `${keysRows[i][j][1]}`
+    }
+  } 
+}
+createKeys();
