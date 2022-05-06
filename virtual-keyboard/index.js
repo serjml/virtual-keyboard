@@ -16,7 +16,7 @@ const keysRows = [
     ['Digit0', '0', ')', '0', ')'],
     ['Minus', '-', '_', '-', '_'],
     ['Equal', '=', '+', '=', '+'],
-    ['Backspace', '⇦', 'BACKSPACE', 'BACKSPACE', 'BACKSPACE'],
+    ['Backspace', '⇦', '⇦', '⇦', '⇦'],
   ],
   [
     ['Tab','TAB', 'TAB', 'TAB', 'TAB'],
@@ -62,18 +62,18 @@ const keysRows = [
     ['NumpadDecimal', ',', '<', 'б', 'Б'],
     ['Period', '.', '>', 'ю', 'Ю'],
     ['Slash', '/', '?', '.', ','],
-    ['ArrowUp', '🢁', '🢁', '🢁', '🢁'],
+    ['ArrowUp', '⮝', '⮝', '⮝', '⮝'],
     ['ShiftRight', 'SHIFT', 'SHIFT', 'SHIFT', 'SHIFT'],
   ],
   [
     ['ControlLeft','CTRL', 'CTRL', 'CTRL', 'CTRL'],
     ['MetaLeft', 'WIN', 'WIN', 'WIN', 'WIN'],
     ['AltLeft', 'ALT', 'ALT', 'ALT', 'ALT'],
-    ['Space', '', '', '', ''],
+    ['Space', ' ', ' ', ' ', ' '],
     ['AltRight', 'ALT', 'ALT', 'ALT', 'ALT'],
-    ['ArrowLeft', '🢀', '🢀', '🢀', '🢀'],
-    ['ArrowDown', '🢃', '🢃', '🢃', '🢃'],
-    ['ArrowRight', '🢂', '🢂', '🢂', '🢂'],
+    ['ArrowLeft', '⮜', '⮜', '⮜', '⮜'],
+    ['ArrowDown', '⮟', '⮟', '⮟', '⮟'],
+    ['ArrowRight', '⮞', '⮞', '⮞', '⮞'],
     ['ControlRight', 'CTRL', 'CTRL', 'CTRL', 'CTRL'],    
   ],
 ]
@@ -130,8 +130,8 @@ document.body.addEventListener('click', () => textarea.focus());
 const keys = document.querySelectorAll('.key');
 
 keys.forEach(el => {
-  el.addEventListener('click', () => {
-    textarea.value += el.textContent;
+  el.addEventListener('click', () => {    
+    addTextInTextarea(el.textContent);
   });
 
   el.addEventListener('mouseover', () => {
@@ -158,15 +158,127 @@ keys.forEach(el => {
 // сделать под раскладку !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function addKeboardKeys(event) {
   event.preventDefault();
-  const allKeys = keysRows.flat(2);
+  // const allKeys = keysRows.flat(2);
   let currentClass = '.' + event.code;
   let currentKey = document.querySelector(currentClass);
-
-  if (allKeys.some(el => el === event.code)) {
-    textarea.value += event.key;
-    currentKey.classList.add('active');
-    document.addEventListener('keyup', () => currentKey.classList.remove('active'))
-  }  
+  
+  // for (let i = 0; i < keysRows.length; i++ ) {
+  //   for (let j = 0; j < keysRows[i].length; j++) {
+  //     if (keysRows[i][j].some(el => el === event.code)) {
+  //       addTextInTextarea(keysRows[i][j][1]);
+        addTextInTextarea(currentKey.innerHTML);       
+        currentKey.classList.add('active');
+        document.addEventListener('keyup', () => currentKey.classList.remove('active'))
+      // }
+  //   }
+  // }
+  if (event.code === 'Backspace') {
+    addBackspace();
+  }
+  if (event.code === 'Delete') {
+    addKey('', 3, 1);
+  }
+  if (event.code === 'Enter') {
+    addKey('\n', 5, 0);
+  }
+  if (event.code === 'Tab') {
+    addKey('  ', 3, 0);
+  }
+  if (event.code === 'ControlRight') {
+    addKey('', 4, 0);
+  }
+  if ((event.code === 'AltRight') || (event.code === 'MetaLeft')) {
+    addKey('', 3, 0);
+  }
+  // if ((event.code === 'ShiftRight') || (event.code === 'ShiftLeft')) {
+  //   addShift();
+  //   const allKeys = keysRows.flat()
+  //   console.log(allKeys)
+  //   for (let i = 0; i < allKeys.length; i++ ) {
+    
+  //       keys[i].innerText = allKeys[i][2];
+    
+  //   }
+    
+  // }
+  if (event.code === 'CapsLock') {
+    addCaps();
+  
+    }  
+  
 }
 
 document.addEventListener('keydown', addKeboardKeys);
+
+// вставка символов
+function addTextInTextarea(text) {
+  textarea.setRangeText(text, textarea.selectionStart, textarea.selectionEnd, 'end'); 
+}
+
+// включение backspace
+function addBackspace() {
+  if (textarea.selectionStart > 1) {
+    const cursor = textarea.selectionStart;
+    textarea.value = textarea.value.slice(0, cursor - 2) +  textarea.value.slice(cursor, textarea.value.length);
+    textarea.setRangeText('', cursor - 2, cursor - 2, 'end');
+  } else {
+    const cursor = textarea.selectionStart;
+    textarea.value = textarea.value.slice(1, textarea.value.length)
+    textarea.setRangeText('', cursor - 1, cursor - 1, 'end');
+  }
+}
+
+const backspace = document.querySelector('.Backspace');
+backspace.addEventListener('click', addBackspace);
+
+
+// включение caps
+function addCaps() {
+  const caps = document.querySelector('.CapsLock');
+  caps.classList.toggle('active-btn');
+  addKey('', 4, 0);
+  
+  for (let i = 15; i < 25; i++) {
+    capsToggle(i);
+  }
+  for (let i = 30; i < 39; i++) {
+    capsToggle(i);
+  }
+  for (let i = 43; i < 50; i++) {
+    capsToggle(i);
+  }
+}
+
+function capsToggle(i) { 
+    if (keys[i].innerHTML === keys[i].innerHTML.toLowerCase()) {
+      keys[i].innerHTML = keys[i].innerHTML.toUpperCase()
+    } else {
+      keys[i].innerHTML = keys[i].innerHTML.toLowerCase()
+    }
+}
+
+
+// включение остальных кнопок
+function addKey(value, numStart, numEnd) {
+  const cursor = textarea.selectionStart;   
+  textarea.setRangeText(value, cursor - numStart, cursor + numEnd, 'end');  
+}
+
+const del = document.querySelector('.Delete');
+del.addEventListener('click', () => addKey('', 3, 1));
+
+const enter = document.querySelector('.Enter');
+enter.addEventListener('click', () => addKey('\n', 5, 0));
+
+const tab = document.querySelector('.Tab');
+tab.addEventListener('click', () => addKey('  ', 3, 0));
+
+const rightCtrl = document.querySelector('.ControlRight');
+rightCtrl.addEventListener('click', () => addKey('', 4, 0));
+
+const rightAlt = document.querySelector('.AltRight');
+rightAlt.addEventListener('click', () => addKey('', 3, 0));
+
+const win = document.querySelector('.MetaLeft');
+win.addEventListener('click', () => addKey('', 3, 0));
+

@@ -100,8 +100,13 @@
   cursor: pointer;
 }
 
-.active {
+.active,
+.active-btn {
   background-color: rgb(0, 211, 105);
   border-radius: 20px;
   color: #ffffff;
 }
+
+/* .caps-active {
+  text-transform: uppercase;
+} */
