@@ -122,6 +122,51 @@ function createKeys() {
       row.append(key)
       key.innerText = `${keysRows[i][j][1]}`
     }
-  } 
+  }  
 }
 createKeys();
+
+document.body.addEventListener('click', () => textarea.focus());
+const keys = document.querySelectorAll('.key');
+
+keys.forEach(el => {
+  el.addEventListener('click', () => {
+    textarea.value += el.textContent;
+  });
+
+  el.addEventListener('mouseover', () => {
+    el.classList.add('hover');
+    el.classList.remove('active');
+  })
+
+  el.addEventListener('mouseout', () => {
+    el.classList.remove('hover');
+    el.classList.remove('active');
+  })
+
+  el.addEventListener('mousedown', () => {
+    el.classList.add('active');
+    el.classList.remove('hover');
+  })
+
+  el.addEventListener('mouseup', () => {
+    el.classList.remove('active');
+    el.classList.add('hover');
+  })
+})
+
+// сделать под раскладку !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function addKeboardKeys(event) {
+  event.preventDefault();
+  const allKeys = keysRows.flat(2);
+  let currentClass = '.' + event.code;
+  let currentKey = document.querySelector(currentClass);
+
+  if (allKeys.some(el => el === event.code)) {
+    textarea.value += event.key;
+    currentKey.classList.add('active');
+    document.addEventListener('keyup', () => currentKey.classList.remove('active'))
+  }  
+}
+
+document.addEventListener('keydown', addKeboardKeys);
