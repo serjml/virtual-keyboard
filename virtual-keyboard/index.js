@@ -1,6 +1,6 @@
 // массив из 5 рядов  
 // каждый ряд массив
-// каждая кнопка массив [code, en, en-shift, ru, ru-shift];
+// каждая кнопка массив [0 - code, 1 - en, 2 - en-shift, 3 - ru, 4 - ru-shift];
 const keysRows = [
   [
     ['Backquote','`', '~', 'ё', 'Ё'],
@@ -77,6 +77,10 @@ const keysRows = [
     ['ControlRight', 'CTRL', 'CTRL', 'CTRL', 'CTRL'],    
   ],
 ]
+
+let flag2 = false;
+let flag = false;
+let lang = 'eng';
 
 // создание контейнера с элементами
 const container = document.createElement('div');
@@ -161,37 +165,247 @@ const shiftRight = document.querySelector('.ShiftRight');
 const caps = document.querySelector('.CapsLock');
 
 
-let flag2 = false;
-let flag = false;
-// сделать под раскладку !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function addKeboardKeys(event) {
-  
+
+function chooseEng() {
+  changeRowKeys(0, 2, 0, 0, 1);
+  changeRowKeys(14, 27, 14, 1, 1);
+  changeRowKeys(29, 41, 29, 2, 1);
+  changeRowKeys(42, 53, 42, 3, 1); 
+}
+function chooseRus() {
+  changeRowKeys(0, 2, 0, 0, 3);
+  changeRowKeys(14, 28, 14, 1, 3);
+  changeRowKeys(29, 41, 29, 2, 3);
+  changeRowKeys(42, 53, 42, 3, 3);
+}
+
+function addKeboardKeys(event) {  
   event.preventDefault();   
   let currentClass = '.' + event.code;
   let currentKey = document.querySelector(currentClass);
   addTextInTextarea(currentKey.innerHTML);  
   currentKey.classList.add('active');
 
+
+
+  // переключение флага языка // смена языка на клавишах
   if (event.code === 'ControlLeft') {
+    addKey('', 4, 0);
     flag = true; 
     document.addEventListener('keyup', () => flag = false) 
   } 
   if (event.code === 'AltLeft' && flag) {
     flag = false;
-    console.log('lang')
+    if (lang === 'eng') {
+      lang = 'ru';
+      chooseRus();
+      if (caps.classList.contains('active-btn')) {
+        console.log('ru');
+        addCapsChangeRu();
+      }
+    } else {
+      lang = 'eng';
+      chooseEng();
+      if (caps.classList.contains('active-btn')) {
+        console.log('en')
+        addCapsChangeEn()
+      }
+    }    
   }
+  
   if (event.code === 'AltLeft') {
+    addKey('', 3, 0);
     flag2 = true; 
     document.addEventListener('keyup', () => flag2 = false) 
   } 
   if (event.code === 'ControlLeft' && flag2) {
+    
     flag2 = false;
-    console.log('lang2')
+    if (lang === 'eng') {
+      lang = 'ru';
+      chooseRus();
+      if (caps.classList.contains('active-btn')) {
+        addCapsChangeRu();
+      }
+    } else {
+      lang = 'eng'
+      chooseEng();
+      if (caps.classList.contains('active-btn')) {
+        addCapsChangeEn()
+      }
+    }    
+  }
+ 
+  // добавленеи шифта
+  if (lang === 'eng') {
+    if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight'))  {     
+      addKey('', 5, 0);    
+      if (caps.classList.contains('active-btn')) {         
+        changeRowKeys(0, 14, 0, 0, 2);
+        document.addEventListener('keyup', (event) => {          
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) { 
+                       
+            changeRowKeys(0, 14, 0, 0, 1);
+            currentKey.classList.remove('active')
+          }
+        });
+
+        changeRowKeys(14, 25, 14, 1, 1);
+        changeRowKeys(25, 29, 14, 1, 2);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {           
+            changeRowKeys(14, 25, 14, 1, 2);
+            changeRowKeys(25, 29, 14, 1, 1);
+            currentKey.classList.remove('active')
+          }
+        });
+
+        changeRowKeys(29, 39, 29, 2, 1);
+        changeRowKeys(39, 42, 29, 2, 2);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(29, 39, 29, 2, 2);
+            changeRowKeys(39, 42, 29, 2, 1);
+            currentKey.classList.remove('active')
+          }
+        });
+
+        changeRowKeys(42, 50, 42, 3, 1);
+        changeRowKeys(50, 55, 42, 3, 2);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(42, 50, 42, 3, 2);
+            changeRowKeys(50, 55, 42, 3, 1);
+            currentKey.classList.remove('active')
+          }
+        });
+      } else {        
+        changeRowKeys(0, 14, 0, 0, 2);
+       
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) { 
+            changeRowKeys(0, 14, 0, 0, 1);
+            currentKey.classList.remove('active')
+          }
+        });
+    
+        changeRowKeys(14, 29, 14, 1, 2);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(14, 29, 14, 1, 1);
+            currentKey.classList.remove('active')
+          }
+        });
+    
+        changeRowKeys(29, 42, 29, 2, 2);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(29, 42, 29, 2, 1);
+            currentKey.classList.remove('active')
+          }
+        });
+    
+        changeRowKeys(42, 55, 42, 3, 2);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(42, 55, 42, 3, 1);
+            currentKey.classList.remove('active')
+          }
+        });
+      }
+    }
+    
+  } else {
+    if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight'))  {     
+      addKey('', 5, 0);    
+      
+      if (caps.classList.contains('active-btn')) {
+        keys[0].innerHTML = keysRows[0][0][3];
+       
+        changeRowKeys(1, 14, 0, 0, 4);
+        document.addEventListener('keyup', (event) => {          
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {
+            keys[0].innerHTML = keysRows[0][0][4];                
+            changeRowKeys(1, 14, 0, 0, 3);
+            currentKey.classList.remove('active')
+          }
+        });
+
+        changeRowKeys(14, 27, 14, 1, 3);
+        changeRowKeys(27, 29, 14, 1, 4);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {           
+            changeRowKeys(14, 27, 14, 1, 4);
+            changeRowKeys(27, 29, 14, 1, 3);
+            currentKey.classList.remove('active')
+          }
+        });
+
+        changeRowKeys(29, 42, 29, 2, 3);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(29, 42, 29, 2, 4);
+            currentKey.classList.remove('active')
+          }
+        });
+
+        changeRowKeys(42, 52, 42, 3, 3);
+        changeRowKeys(52, 55, 42, 3, 4);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(42, 52, 42, 3, 4);
+            changeRowKeys(52, 55, 42, 3, 3);
+            currentKey.classList.remove('active')
+          }
+        });
+      } else {
+        
+        changeRowKeys(0, 14, 0, 0, 4);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(0, 14, 0, 0, 3);
+            currentKey.classList.remove('active')
+          }
+        });
+    
+        changeRowKeys(14, 29, 14, 1, 4);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(14, 29, 14, 1, 3);
+            currentKey.classList.remove('active')
+          }
+        });
+    
+        changeRowKeys(29, 42, 29, 2, 4);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(29, 42, 29, 2, 3);
+            currentKey.classList.remove('active')
+          }
+        });
+    
+        changeRowKeys(42, 55, 42, 3, 4);
+        document.addEventListener('keyup', (event) => {
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(42, 55, 42, 3, 3);
+            currentKey.classList.remove('active')
+          }
+        });
+      }
+    }    
   }
 
-
-
-
+  // добавленеи капса
+  if (lang === 'eng') {
+    if (event.code === 'CapsLock') {
+      addCaps();
+    }    
+  } else {
+    if (event.code === 'CapsLock') {
+      addCapsRu();
+    }    
+  }
+ 
   if (event.code === 'Backspace') {
     addBackspace();
   } 
@@ -210,87 +424,10 @@ function addKeboardKeys(event) {
    if ((event.code === 'AltRight') || (event.code === 'MetaLeft')) {
     addKey('', 3, 0);    
   }
-
-  if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight'))  {
-    // addShift(event) 
-    addKey('', 5, 0);
-    
-    if (caps.classList.contains('active-btn')) {
-      changeRowKeys(0, 14, 0, 0, 2);
-      document.addEventListener('keyup', (event) => {
-        
-        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {                
-          changeRowKeys(0, 14, 0, 0, 1);
-          currentKey.classList.remove('active')
-        }
-      });
-
-      changeRowKeys(14, 29, 14, 1, 1);
-      document.addEventListener('keyup', (event) => {
-        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {           
-          changeRowKeys(14, 29, 14, 1, 2);
-          currentKey.classList.remove('active')
-        }
-      });
-
-      changeRowKeys(29, 42, 29, 2, 1);
-      document.addEventListener('keyup', (event) => {
-        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-          changeRowKeys(29, 42, 29, 2, 2);
-          currentKey.classList.remove('active')
-        }
-      });
-
-      changeRowKeys(42, 55, 42, 3, 1);
-      document.addEventListener('keyup', (event) => {
-        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-          changeRowKeys(42, 55, 42, 3, 2);
-          currentKey.classList.remove('active')
-        }
-      });
-    } else {
-      
-      changeRowKeys(0, 14, 0, 0, 2);
-      document.addEventListener('keyup', (event) => {
-        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-          changeRowKeys(0, 14, 0, 0, 1);
-          currentKey.classList.remove('active')
-        }
-      });
-  
-      changeRowKeys(14, 29, 14, 1, 2);
-      document.addEventListener('keyup', (event) => {
-        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-          changeRowKeys(14, 29, 14, 1, 1);
-          currentKey.classList.remove('active')
-        }
-      });
-  
-      changeRowKeys(29, 42, 29, 2, 2);
-      document.addEventListener('keyup', (event) => {
-        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-          changeRowKeys(29, 42, 29, 2, 1);
-          currentKey.classList.remove('active')
-        }
-      });
-  
-      changeRowKeys(42, 55, 42, 3, 2);
-      document.addEventListener('keyup', (event) => {
-        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-          changeRowKeys(42, 55, 42, 3, 1);
-          currentKey.classList.remove('active')
-        }
-      });
-    }
-  }
-
-  if (event.code === 'CapsLock') {
-    addCaps();
-  }
-
   if ((event.code !== 'ShiftLeft')  && (event.code !== 'ShiftRight')) {
     document.addEventListener('keyup', () => currentKey.classList.remove('active'))
   }
+  
 }
 document.addEventListener('keydown', addKeboardKeys);
 
@@ -301,103 +438,84 @@ function changeRowKeys(start, end, idx, rowNum, keyNum) {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
 function addShift() {
-  // addKey('', 5, 0);
-    
-  // if (caps.classList.contains('active-btn')) {
-  //   changeRowKeys(0, 14, 0, 0, 2);
-  //   document.addEventListener('keyup', (event) => {
-      
-  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {                
-  //       changeRowKeys(0, 14, 0, 0, 1);
-  //       currentKey.classList.remove('active')
-  //     }
-  //   });
-
-  //   changeRowKeys(14, 29, 14, 1, 1);
-  //   document.addEventListener('keyup', (event) => {
-  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {           
-  //       changeRowKeys(14, 29, 14, 1, 2);
-  //       currentKey.classList.remove('active')
-  //     }
-  //   });
-
-  //   changeRowKeys(29, 42, 29, 2, 1);
-  //   document.addEventListener('keyup', (event) => {
-  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-  //       changeRowKeys(29, 42, 29, 2, 2);
-  //       currentKey.classList.remove('active')
-  //     }
-  //   });
-
-  //   changeRowKeys(42, 55, 42, 3, 1);
-  //   document.addEventListener('keyup', (event) => {
-  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-  //       changeRowKeys(42, 55, 42, 3, 2);
-  //       currentKey.classList.remove('active')
-  //     }
-  //   });
-  // } else {
-    
-  //   changeRowKeys(0, 14, 0, 0, 2);
-  //   document.addEventListener('keyup', (event) => {
-  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-  //       changeRowKeys(0, 14, 0, 0, 1);
-  //       currentKey.classList.remove('active')
-  //     }
-  //   });
-
-  //   changeRowKeys(14, 29, 14, 1, 2);
-  //   document.addEventListener('keyup', (event) => {
-  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-  //       changeRowKeys(14, 29, 14, 1, 1);
-  //       currentKey.classList.remove('active')
-  //     }
-  //   });
-
-  //   changeRowKeys(29, 42, 29, 2, 2);
-  //   document.addEventListener('keyup', (event) => {
-  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-  //       changeRowKeys(29, 42, 29, 2, 1);
-  //       currentKey.classList.remove('active')
-  //     }
-  //   });
-
-  //   changeRowKeys(42, 55, 42, 3, 2);
-  //   document.addEventListener('keyup', (event) => {
-  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-  //       changeRowKeys(42, 55, 42, 3, 1);
-  //       currentKey.classList.remove('active')
-  //     }
-  //   });
-  // }
-  if (caps.classList.contains('active-btn')) {
-    changeRowKeys(0, 14, 0, 0, 2);
-    changeRowKeys(14, 29, 14, 1, 1);
-    changeRowKeys(29, 42, 29, 2, 1);
-    changeRowKeys(42, 55, 42, 3, 1);
-  } else {
-    changeRowKeys(0, 14, 0, 0, 2);
-    changeRowKeys(14, 29, 14, 1, 2);  
-    changeRowKeys(29, 42, 29, 2, 2);      
-    changeRowKeys(42, 55, 42, 3, 2);  
+  if (keys[0].innerHTML === '\`') {
+    if (caps.classList.contains('active-btn')) {
+      changeRowKeys(0, 14, 0, 0, 2);
+      changeRowKeys(14, 25, 14, 1, 1);
+      changeRowKeys(25, 29, 14, 1, 2);
+      changeRowKeys(29, 39, 29, 2, 1);
+      changeRowKeys(39, 42, 29, 2, 2);
+      changeRowKeys(42, 50, 42, 3, 1);
+      changeRowKeys(50, 55, 42, 3, 2);
+    } else {
+      changeRowKeys(0, 14, 0, 0, 2);
+      changeRowKeys(14, 29, 14, 1, 2);  
+      changeRowKeys(29, 42, 29, 2, 2);      
+      changeRowKeys(42, 55, 42, 3, 2);  
+    }    
   }
-  
-    
+  if (keys[0].innerHTML === 'Ё' || keys[0].innerHTML === 'ё') {
+    if (caps.classList.contains('active-btn')) {
+      keys[0].innerHTML = keysRows[0][0][3];
+      changeRowKeys(1, 14, 0, 0, 4);
+      changeRowKeys(14, 27, 14, 1, 3);
+      changeRowKeys(27, 29, 14, 1, 4);
+      changeRowKeys(29, 42, 29, 2, 3);
+      changeRowKeys(42, 52, 42, 3, 3);
+      changeRowKeys(52, 55, 42, 3, 4);
+    } else {
+      changeRowKeys(0, 14, 0, 0, 4);
+      changeRowKeys(14, 29, 14, 1, 4);  
+      changeRowKeys(29, 42, 29, 2, 4);      
+      changeRowKeys(42, 55, 42, 3, 4);  
+    }    
+  }  
 }
-function removeShift() {
-  if (caps.classList.contains('active-btn')) {
-    changeRowKeys(0, 14, 0, 0, 1);
-    changeRowKeys(14, 29, 14, 1, 2);
-    changeRowKeys(29, 42, 29, 2, 2);
-    changeRowKeys(42, 55, 42, 3, 2);
-  } else {
-    changeRowKeys(0, 14, 0, 0, 1);
-    changeRowKeys(14, 29, 14, 1, 1);
-    changeRowKeys(29, 42, 29, 2, 1);
-    changeRowKeys(42, 55, 42, 3, 1); 
-  }
 
+function removeShift() {
+  if (keys[0].innerHTML === '~') {
+    if (caps.classList.contains('active-btn')) {
+      changeRowKeys(0, 14, 0, 0, 1);
+      changeRowKeys(14, 25, 14, 1, 2);
+      changeRowKeys(25, 29, 14, 1, 1);
+      changeRowKeys(29, 39, 29, 2, 2);
+      changeRowKeys(39, 42, 29, 2, 1);
+      changeRowKeys(42, 50, 42, 3, 2);
+      changeRowKeys(50, 55, 42, 3, 1);
+    } else {
+      changeRowKeys(0, 14, 0, 0, 1);
+      changeRowKeys(14, 29, 14, 1, 1);
+      changeRowKeys(29, 42, 29, 2, 1);
+      changeRowKeys(42, 55, 42, 3, 1); 
+    }
+  }
+  if (keys[0].innerHTML === 'Ё'|| keys[0].innerHTML === 'ё') {
+    if (caps.classList.contains('active-btn')) {      
+      keys[0].innerHTML = keysRows[0][0][4];
+      changeRowKeys(1, 14, 0, 0, 3);
+      changeRowKeys(14, 27, 14, 1, 4);
+      changeRowKeys(27, 29, 14, 1, 3);
+      changeRowKeys(29, 42, 29, 2, 4);
+      changeRowKeys(42, 52, 42, 3, 4);
+      changeRowKeys(52, 55, 42, 3, 3);
+    } else {
+      changeRowKeys(0, 14, 0, 0, 3);
+      changeRowKeys(14, 29, 14, 1, 3);  
+      changeRowKeys(29, 42, 29, 2, 3);      
+      changeRowKeys(42, 55, 42, 3, 3);  
+    }    
+  }
 }
 shiftLeft.addEventListener('click', () => addKey('', 5, 0))
 shiftLeft.addEventListener('mousedown', addShift)
@@ -405,8 +523,6 @@ shiftLeft.addEventListener('mouseup', removeShift)
 shiftRight.addEventListener('click', () => addKey('', 5, 0))
 shiftRight.addEventListener('mousedown', addShift)
 shiftRight.addEventListener('mouseup', removeShift)
-
-
 
 // вставка символов
 function addTextInTextarea(text) {
@@ -431,11 +547,9 @@ backspace.addEventListener('click', addBackspace);
 
 // включение caps
 function addCaps() {  
-  addKey('', 4, 0);
-  
+  addKey('', 4, 0);  
   caps.classList.toggle('active-btn');
-
-  if (caps.classList.contains('active-btn')) {
+  if (caps.classList.contains('active-btn')) {    
     for (let i = 15; i < 25; i++) {    
       keys[i].innerHTML = keysRows[1][i - 14][2];     
     }
@@ -445,7 +559,7 @@ function addCaps() {
     for (let i = 43; i < 50; i++) {
       keys[i].innerHTML = keysRows[3][i - 42][2];     
     }
-  } else {
+  } else {    
     for (let i = 15; i < 25; i++) {    
       keys[i].innerHTML = keysRows[1][i - 14][1];    
     }
@@ -457,7 +571,74 @@ function addCaps() {
     }
   }
 }
-caps.addEventListener('click', addCaps);
+function addCapsRu() {  
+  addKey('', 4, 0);  
+  caps.classList.toggle('active-btn');
+  if (caps.classList.contains('active-btn')) {
+      
+      keys[0].innerHTML = keysRows[0][0][4];     
+       
+    for (let i = 15; i < 27; i++) {    
+      keys[i].innerHTML = keysRows[1][i - 14][4];     
+    }
+    for (let i = 30; i < 41; i++) {
+      keys[i].innerHTML = keysRows[2][i - 29][4];     
+    }
+    for (let i = 43; i < 52; i++) {
+      keys[i].innerHTML = keysRows[3][i - 42][4];     
+    }
+  } else {
+    keys[0].innerHTML = keysRows[0][0][3];
+
+    for (let i = 15; i < 27; i++) {    
+      keys[i].innerHTML = keysRows[1][i - 14][3];    
+    }
+    for (let i = 30; i < 41; i++) {
+      keys[i].innerHTML = keysRows[2][i - 29][3];    
+    }
+    for (let i = 43; i < 53; i++) {
+      keys[i].innerHTML = keysRows[3][i - 42][3];    
+    }
+  }
+}
+
+
+
+function addCapsChangeRu() { 
+  for (let i = 15; i < 27; i++) {    
+    keys[i].innerHTML = keysRows[1][i - 14][4];     
+  }
+  for (let i = 30; i < 41; i++) {
+    keys[i].innerHTML = keysRows[2][i - 29][4];     
+  }
+  for (let i = 43; i < 52; i++) {
+    keys[i].innerHTML = keysRows[3][i - 42][4];     
+  }
+}
+function addCapsChangeEn() { 
+  for (let i = 15; i < 25; i++) {    
+    keys[i].innerHTML = keysRows[1][i - 14][2];     
+  }
+  for (let i = 30; i < 39; i++) {
+    keys[i].innerHTML = keysRows[2][i - 29][2];     
+  }
+  for (let i = 43; i < 50; i++) {
+    keys[i].innerHTML = keysRows[3][i - 42][2];     
+  }
+}
+
+
+
+
+
+
+caps.addEventListener('click', () => {
+  if (keys[0].innerHTML === '\`') {
+    addCaps();
+  } else {
+    addCapsRu();
+  }  
+});
 
 
 // включение остальных кнопок
