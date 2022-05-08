@@ -212,7 +212,7 @@ function addKeboardKeys(event) {
       }
     }    
   }
-  
+
   if (event.code === 'AltLeft') {
     addKey('', 3, 0);
     flag2 = true; 
@@ -426,8 +426,7 @@ function addKeboardKeys(event) {
   }
   if ((event.code !== 'ShiftLeft')  && (event.code !== 'ShiftRight')) {
     document.addEventListener('keyup', () => currentKey.classList.remove('active'))
-  }
-  
+  }  
 }
 document.addEventListener('keydown', addKeboardKeys);
 
@@ -665,3 +664,26 @@ rightAlt.addEventListener('click', () => addKey('', 3, 0));
 const win = document.querySelector('.MetaLeft');
 win.addEventListener('click', () => addKey('', 3, 0));
 
+
+
+
+// ///////////////////////////////////////////////////////////
+function setLocalStorage() {
+  if (keys[0].innerHTML === 'Ё'|| keys[0].innerHTML === 'ё') {
+    localStorage.setItem('lang', 'ru');
+  } else {
+    localStorage.setItem('lang', 'en');
+  }   
+}
+window.addEventListener('beforeunload', setLocalStorage);
+
+function addLang() {
+  if (localStorage.getItem('lang') === 'ru') {      
+    chooseRus();
+    lang = 'ru'
+    } else {
+    chooseEng()
+    lang = 'eng' 
+  }
+}
+addLang();
