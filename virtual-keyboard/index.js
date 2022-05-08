@@ -242,157 +242,80 @@ function addKeboardKeys(event) {
       addKey('', 5, 0);    
       if (caps.classList.contains('active-btn')) {         
         changeRowKeys(0, 14, 0, 0, 2);
-        document.addEventListener('keyup', (event) => {          
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) { 
-                       
-            changeRowKeys(0, 14, 0, 0, 1);
-            currentKey.classList.remove('active')
-          }
-        });
-
         changeRowKeys(14, 25, 14, 1, 1);
         changeRowKeys(25, 29, 14, 1, 2);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {           
-            changeRowKeys(14, 25, 14, 1, 2);
-            changeRowKeys(25, 29, 14, 1, 1);
-            currentKey.classList.remove('active')
-          }
-        });
-
         changeRowKeys(29, 39, 29, 2, 1);
         changeRowKeys(39, 42, 29, 2, 2);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-            changeRowKeys(29, 39, 29, 2, 2);
-            changeRowKeys(39, 42, 29, 2, 1);
-            currentKey.classList.remove('active')
-          }
-        });
-
         changeRowKeys(42, 50, 42, 3, 1);
-        changeRowKeys(50, 55, 42, 3, 2);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-            changeRowKeys(42, 50, 42, 3, 2);
-            changeRowKeys(50, 55, 42, 3, 1);
-            currentKey.classList.remove('active')
-          }
-        });
+        changeRowKeys(50, 55, 42, 3, 2);   
+        document.addEventListener('keyup', (event) => {          
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight') && (event.code === 'CapsLock')) {            
+              changeRowKeys(0, 14, 0, 0, 1);
+              changeRowKeys(14, 25, 14, 1, 2);
+              changeRowKeys(25, 29, 14, 1, 1);
+              changeRowKeys(29, 39, 29, 2, 2);
+              changeRowKeys(39, 42, 29, 2, 1);
+              changeRowKeys(42, 50, 42, 3, 2);
+              changeRowKeys(50, 55, 42, 3, 1);
+              currentKey.classList.remove('active')           
+          } 
+        });         
       } else {        
         changeRowKeys(0, 14, 0, 0, 2);
-       
+        changeRowKeys(14, 29, 14, 1, 2);
+        changeRowKeys(29, 42, 29, 2, 2);
+        changeRowKeys(42, 55, 42, 3, 2);
         document.addEventListener('keyup', (event) => {
           if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) { 
             changeRowKeys(0, 14, 0, 0, 1);
-            currentKey.classList.remove('active')
-          }
-        });
-    
-        changeRowKeys(14, 29, 14, 1, 2);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
             changeRowKeys(14, 29, 14, 1, 1);
-            currentKey.classList.remove('active')
-          }
-        });
-    
-        changeRowKeys(29, 42, 29, 2, 2);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
             changeRowKeys(29, 42, 29, 2, 1);
-            currentKey.classList.remove('active')
-          }
-        });
-    
-        changeRowKeys(42, 55, 42, 3, 2);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
             changeRowKeys(42, 55, 42, 3, 1);
             currentKey.classList.remove('active')
           }
         });
       }
-    }
-    
+    }    
   } else {
     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight'))  {     
-      addKey('', 5, 0);    
-      
+      addKey('', 5, 0); 
       if (caps.classList.contains('active-btn')) {
         keys[0].innerHTML = keysRows[0][0][3];
        
         changeRowKeys(1, 14, 0, 0, 4);
-        document.addEventListener('keyup', (event) => {          
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {
-            keys[0].innerHTML = keysRows[0][0][4];                
-            changeRowKeys(1, 14, 0, 0, 3);
-            currentKey.classList.remove('active')
-          }
-        });
-
         changeRowKeys(14, 27, 14, 1, 3);
         changeRowKeys(27, 29, 14, 1, 4);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {           
-            changeRowKeys(14, 27, 14, 1, 4);
-            changeRowKeys(27, 29, 14, 1, 3);
-            currentKey.classList.remove('active')
-          }
-        });
-
         changeRowKeys(29, 42, 29, 2, 3);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-            changeRowKeys(29, 42, 29, 2, 4);
-            currentKey.classList.remove('active')
-          }
-        });
-
         changeRowKeys(42, 52, 42, 3, 3);
         changeRowKeys(52, 55, 42, 3, 4);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+        document.addEventListener('keyup', (event) => {          
+          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight') && (event.code === 'CapsLock')) {
+            keys[0].innerHTML = keysRows[0][0][4];                
+            changeRowKeys(1, 14, 0, 0, 3);
+            changeRowKeys(14, 27, 14, 1, 4);
+            changeRowKeys(27, 29, 14, 1, 3);
+            changeRowKeys(29, 42, 29, 2, 4);
             changeRowKeys(42, 52, 42, 3, 4);
             changeRowKeys(52, 55, 42, 3, 3);
             currentKey.classList.remove('active')
           }
         });
-      } else {
-        
+      } else {        
         changeRowKeys(0, 14, 0, 0, 4);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-            changeRowKeys(0, 14, 0, 0, 3);
-            currentKey.classList.remove('active')
-          }
-        });
-    
         changeRowKeys(14, 29, 14, 1, 4);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-            changeRowKeys(14, 29, 14, 1, 3);
-            currentKey.classList.remove('active')
-          }
-        });
-    
         changeRowKeys(29, 42, 29, 2, 4);
-        document.addEventListener('keyup', (event) => {
-          if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
-            changeRowKeys(29, 42, 29, 2, 3);
-            currentKey.classList.remove('active')
-          }
-        });
-    
         changeRowKeys(42, 55, 42, 3, 4);
         document.addEventListener('keyup', (event) => {
           if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+            changeRowKeys(0, 14, 0, 0, 3);
+            changeRowKeys(14, 29, 14, 1, 3);
+            changeRowKeys(29, 42, 29, 2, 3);
             changeRowKeys(42, 55, 42, 3, 3);
             currentKey.classList.remove('active')
           }
         });
       }
-    }    
+    }
   }
 
   // добавленеи капса
@@ -548,56 +471,103 @@ backspace.addEventListener('click', addBackspace);
 function addCaps() {  
   addKey('', 4, 0);  
   caps.classList.toggle('active-btn');
-  if (caps.classList.contains('active-btn')) {    
-    for (let i = 15; i < 25; i++) {    
-      keys[i].innerHTML = keysRows[1][i - 14][2];     
-    }
-    for (let i = 30; i < 39; i++) {
-      keys[i].innerHTML = keysRows[2][i - 29][2];     
-    }
-    for (let i = 43; i < 50; i++) {
-      keys[i].innerHTML = keysRows[3][i - 42][2];     
-    }
-  } else {    
-    for (let i = 15; i < 25; i++) {    
-      keys[i].innerHTML = keysRows[1][i - 14][1];    
-    }
-    for (let i = 30; i < 39; i++) {
-      keys[i].innerHTML = keysRows[2][i - 29][1];    
-    }
-    for (let i = 43; i < 50; i++) {
-      keys[i].innerHTML = keysRows[3][i - 42][1];    
-    }
+  if (caps.classList.contains('active-btn')) {
+    if (shiftLeft.classList.contains('active')) {      
+      for (let i = 15; i < 25; i++) {    
+        keys[i].innerHTML = keysRows[1][i - 14][1];     
+      }2
+      for (let i = 30; i < 39; i++) {
+        keys[i].innerHTML = keysRows[2][i - 29][1];     
+      }
+      for (let i = 43; i < 50; i++) {
+        keys[i].innerHTML = keysRows[3][i - 42][1];     
+      } 
+    } else {
+      for (let i = 15; i < 25; i++) {    
+        keys[i].innerHTML = keysRows[1][i - 14][2];     
+      }
+      for (let i = 30; i < 39; i++) {
+        keys[i].innerHTML = keysRows[2][i - 29][2];     
+      }
+      for (let i = 43; i < 50; i++) {
+        keys[i].innerHTML = keysRows[3][i - 42][2];     
+      }
+    }   
+  } else {
+    if (shiftLeft.classList.contains('active')) {      
+      for (let i = 15; i < 25; i++) {    
+        keys[i].innerHTML = keysRows[1][i - 14][2];     
+      }2
+      for (let i = 30; i < 39; i++) {
+        keys[i].innerHTML = keysRows[2][i - 29][2];     
+      }
+      for (let i = 43; i < 50; i++) {
+        keys[i].innerHTML = keysRows[3][i - 42][2];     
+      } 
+    } else {
+      for (let i = 15; i < 25; i++) {    
+        keys[i].innerHTML = keysRows[1][i - 14][1];     
+      }
+      for (let i = 30; i < 39; i++) {
+        keys[i].innerHTML = keysRows[2][i - 29][1];     
+      }
+      for (let i = 43; i < 50; i++) {
+        keys[i].innerHTML = keysRows[3][i - 42][1];     
+      }
+    }   
   }
 }
 function addCapsRu() {  
   addKey('', 4, 0);  
   caps.classList.toggle('active-btn');
   if (caps.classList.contains('active-btn')) {
-      
-      keys[0].innerHTML = keysRows[0][0][4];     
-       
-    for (let i = 15; i < 27; i++) {    
-      keys[i].innerHTML = keysRows[1][i - 14][4];     
-    }
-    for (let i = 30; i < 41; i++) {
-      keys[i].innerHTML = keysRows[2][i - 29][4];     
-    }
-    for (let i = 43; i < 52; i++) {
-      keys[i].innerHTML = keysRows[3][i - 42][4];     
+    keys[0].innerHTML = keysRows[0][0][4];
+    if (shiftLeft.classList.contains('active')) { 
+      keys[0].innerHTML = keysRows[0][0][3];
+      for (let i = 15; i < 27; i++) {    
+        keys[i].innerHTML = keysRows[1][i - 14][3];     
+      }2
+      for (let i = 30; i < 41; i++) {
+        keys[i].innerHTML = keysRows[2][i - 29][3];     
+      }
+      for (let i = 43; i < 52; i++) {
+        keys[i].innerHTML = keysRows[3][i - 42][3];     
+      } 
+    } else {
+      for (let i = 15; i < 27; i++) {    
+        keys[i].innerHTML = keysRows[1][i - 14][4];     
+      }
+      for (let i = 30; i < 41; i++) {
+        keys[i].innerHTML = keysRows[2][i - 29][4];     
+      }
+      for (let i = 43; i < 52; i++) {
+        keys[i].innerHTML = keysRows[3][i - 42][4];     
+      }
     }
   } else {
     keys[0].innerHTML = keysRows[0][0][3];
-
-    for (let i = 15; i < 27; i++) {    
-      keys[i].innerHTML = keysRows[1][i - 14][3];    
-    }
-    for (let i = 30; i < 41; i++) {
-      keys[i].innerHTML = keysRows[2][i - 29][3];    
-    }
-    for (let i = 43; i < 53; i++) {
-      keys[i].innerHTML = keysRows[3][i - 42][3];    
-    }
+    if (shiftLeft.classList.contains('active')) { 
+      keys[0].innerHTML = keysRows[0][0][4];     
+      for (let i = 15; i < 27; i++) {    
+        keys[i].innerHTML = keysRows[1][i - 14][4];     
+      }2
+      for (let i = 30; i < 41; i++) {
+        keys[i].innerHTML = keysRows[2][i - 29][4];     
+      }
+      for (let i = 43; i < 52; i++) {
+        keys[i].innerHTML = keysRows[3][i - 42][4];     
+      } 
+    } else {
+      for (let i = 15; i < 27; i++) {    
+        keys[i].innerHTML = keysRows[1][i - 14][3];     
+      }
+      for (let i = 30; i < 41; i++) {
+        keys[i].innerHTML = keysRows[2][i - 29][3];     
+      }
+      for (let i = 43; i < 52; i++) {
+        keys[i].innerHTML = keysRows[3][i - 42][3];     
+      }
+    }   
   }
 }
 
