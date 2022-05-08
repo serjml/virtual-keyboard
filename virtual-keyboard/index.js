@@ -19,7 +19,7 @@ const keysRows = [
     ['Backspace', '⇦', '⇦', '⇦', '⇦'],
   ],
   [
-    ['Tab','TAB', 'TAB', 'TAB', 'TAB'],
+    ['Tab', 'TAB', 'TAB', 'TAB', 'TAB'],
     ['KeyQ', 'q', 'Q', 'й', 'Й'],
     ['KeyW', 'w', 'W', 'ц', 'Ц'],
     ['KeyE', 'e', 'E', 'у', 'У'],
@@ -127,6 +127,7 @@ function createKeys() {
 createKeys();
 
 document.body.addEventListener('click', () => textarea.focus());
+
 const keys = document.querySelectorAll('.key');
 
 keys.forEach(el => {
@@ -155,60 +156,257 @@ keys.forEach(el => {
   })
 })
 
+const shiftLeft = document.querySelector('.ShiftLeft');
+const shiftRight = document.querySelector('.ShiftRight');
+const caps = document.querySelector('.CapsLock');
+
+
+let flag2 = false;
+let flag = false;
 // сделать под раскладку !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function addKeboardKeys(event) {
-  event.preventDefault();
-  // const allKeys = keysRows.flat(2);
+  
+  event.preventDefault();   
   let currentClass = '.' + event.code;
   let currentKey = document.querySelector(currentClass);
-  
-  // for (let i = 0; i < keysRows.length; i++ ) {
-  //   for (let j = 0; j < keysRows[i].length; j++) {
-  //     if (keysRows[i][j].some(el => el === event.code)) {
-  //       addTextInTextarea(keysRows[i][j][1]);
-        addTextInTextarea(currentKey.innerHTML);       
-        currentKey.classList.add('active');
-        document.addEventListener('keyup', () => currentKey.classList.remove('active'))
-      // }
-  //   }
-  // }
+  addTextInTextarea(currentKey.innerHTML);  
+  currentKey.classList.add('active');
+
+  if (event.code === 'ControlLeft') {
+    flag = true; 
+    document.addEventListener('keyup', () => flag = false) 
+  } 
+  if (event.code === 'AltLeft' && flag) {
+    flag = false;
+    console.log('lang')
+  }
+  if (event.code === 'AltLeft') {
+    flag2 = true; 
+    document.addEventListener('keyup', () => flag2 = false) 
+  } 
+  if (event.code === 'ControlLeft' && flag2) {
+    flag2 = false;
+    console.log('lang2')
+  }
+
+
+
+
   if (event.code === 'Backspace') {
     addBackspace();
-  }
+  } 
   if (event.code === 'Delete') {
     addKey('', 3, 1);
-  }
+  } 
   if (event.code === 'Enter') {
     addKey('\n', 5, 0);
-  }
+  } 
   if (event.code === 'Tab') {
     addKey('  ', 3, 0);
-  }
+  } 
   if (event.code === 'ControlRight') {
     addKey('', 4, 0);
+  } 
+   if ((event.code === 'AltRight') || (event.code === 'MetaLeft')) {
+    addKey('', 3, 0);    
   }
-  if ((event.code === 'AltRight') || (event.code === 'MetaLeft')) {
-    addKey('', 3, 0);
+
+  if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight'))  {
+    // addShift(event) 
+    addKey('', 5, 0);
+    
+    if (caps.classList.contains('active-btn')) {
+      changeRowKeys(0, 14, 0, 0, 2);
+      document.addEventListener('keyup', (event) => {
+        
+        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {                
+          changeRowKeys(0, 14, 0, 0, 1);
+          currentKey.classList.remove('active')
+        }
+      });
+
+      changeRowKeys(14, 29, 14, 1, 1);
+      document.addEventListener('keyup', (event) => {
+        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {           
+          changeRowKeys(14, 29, 14, 1, 2);
+          currentKey.classList.remove('active')
+        }
+      });
+
+      changeRowKeys(29, 42, 29, 2, 1);
+      document.addEventListener('keyup', (event) => {
+        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+          changeRowKeys(29, 42, 29, 2, 2);
+          currentKey.classList.remove('active')
+        }
+      });
+
+      changeRowKeys(42, 55, 42, 3, 1);
+      document.addEventListener('keyup', (event) => {
+        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+          changeRowKeys(42, 55, 42, 3, 2);
+          currentKey.classList.remove('active')
+        }
+      });
+    } else {
+      
+      changeRowKeys(0, 14, 0, 0, 2);
+      document.addEventListener('keyup', (event) => {
+        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+          changeRowKeys(0, 14, 0, 0, 1);
+          currentKey.classList.remove('active')
+        }
+      });
+  
+      changeRowKeys(14, 29, 14, 1, 2);
+      document.addEventListener('keyup', (event) => {
+        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+          changeRowKeys(14, 29, 14, 1, 1);
+          currentKey.classList.remove('active')
+        }
+      });
+  
+      changeRowKeys(29, 42, 29, 2, 2);
+      document.addEventListener('keyup', (event) => {
+        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+          changeRowKeys(29, 42, 29, 2, 1);
+          currentKey.classList.remove('active')
+        }
+      });
+  
+      changeRowKeys(42, 55, 42, 3, 2);
+      document.addEventListener('keyup', (event) => {
+        if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+          changeRowKeys(42, 55, 42, 3, 1);
+          currentKey.classList.remove('active')
+        }
+      });
+    }
   }
-  // if ((event.code === 'ShiftRight') || (event.code === 'ShiftLeft')) {
-  //   addShift();
-  //   const allKeys = keysRows.flat()
-  //   console.log(allKeys)
-  //   for (let i = 0; i < allKeys.length; i++ ) {
-    
-  //       keys[i].innerText = allKeys[i][2];
-    
-  //   }
-    
-  // }
+
   if (event.code === 'CapsLock') {
     addCaps();
-  
-    }  
-  
+  }
+
+  if ((event.code !== 'ShiftLeft')  && (event.code !== 'ShiftRight')) {
+    document.addEventListener('keyup', () => currentKey.classList.remove('active'))
+  }
+}
+document.addEventListener('keydown', addKeboardKeys);
+
+// функция перебора и замены символов ряда при шифте
+function changeRowKeys(start, end, idx, rowNum, keyNum) {
+  for (let i = start; i < end; i++) {
+    keys[i].innerHTML = keysRows[rowNum][i - idx][keyNum];
+  }
 }
 
-document.addEventListener('keydown', addKeboardKeys);
+function addShift() {
+  // addKey('', 5, 0);
+    
+  // if (caps.classList.contains('active-btn')) {
+  //   changeRowKeys(0, 14, 0, 0, 2);
+  //   document.addEventListener('keyup', (event) => {
+      
+  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {                
+  //       changeRowKeys(0, 14, 0, 0, 1);
+  //       currentKey.classList.remove('active')
+  //     }
+  //   });
+
+  //   changeRowKeys(14, 29, 14, 1, 1);
+  //   document.addEventListener('keyup', (event) => {
+  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {           
+  //       changeRowKeys(14, 29, 14, 1, 2);
+  //       currentKey.classList.remove('active')
+  //     }
+  //   });
+
+  //   changeRowKeys(29, 42, 29, 2, 1);
+  //   document.addEventListener('keyup', (event) => {
+  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+  //       changeRowKeys(29, 42, 29, 2, 2);
+  //       currentKey.classList.remove('active')
+  //     }
+  //   });
+
+  //   changeRowKeys(42, 55, 42, 3, 1);
+  //   document.addEventListener('keyup', (event) => {
+  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+  //       changeRowKeys(42, 55, 42, 3, 2);
+  //       currentKey.classList.remove('active')
+  //     }
+  //   });
+  // } else {
+    
+  //   changeRowKeys(0, 14, 0, 0, 2);
+  //   document.addEventListener('keyup', (event) => {
+  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+  //       changeRowKeys(0, 14, 0, 0, 1);
+  //       currentKey.classList.remove('active')
+  //     }
+  //   });
+
+  //   changeRowKeys(14, 29, 14, 1, 2);
+  //   document.addEventListener('keyup', (event) => {
+  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+  //       changeRowKeys(14, 29, 14, 1, 1);
+  //       currentKey.classList.remove('active')
+  //     }
+  //   });
+
+  //   changeRowKeys(29, 42, 29, 2, 2);
+  //   document.addEventListener('keyup', (event) => {
+  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+  //       changeRowKeys(29, 42, 29, 2, 1);
+  //       currentKey.classList.remove('active')
+  //     }
+  //   });
+
+  //   changeRowKeys(42, 55, 42, 3, 2);
+  //   document.addEventListener('keyup', (event) => {
+  //     if ((event.code === 'ShiftLeft') || (event.code === 'ShiftRight')) {        
+  //       changeRowKeys(42, 55, 42, 3, 1);
+  //       currentKey.classList.remove('active')
+  //     }
+  //   });
+  // }
+  if (caps.classList.contains('active-btn')) {
+    changeRowKeys(0, 14, 0, 0, 2);
+    changeRowKeys(14, 29, 14, 1, 1);
+    changeRowKeys(29, 42, 29, 2, 1);
+    changeRowKeys(42, 55, 42, 3, 1);
+  } else {
+    changeRowKeys(0, 14, 0, 0, 2);
+    changeRowKeys(14, 29, 14, 1, 2);  
+    changeRowKeys(29, 42, 29, 2, 2);      
+    changeRowKeys(42, 55, 42, 3, 2);  
+  }
+  
+    
+}
+function removeShift() {
+  if (caps.classList.contains('active-btn')) {
+    changeRowKeys(0, 14, 0, 0, 1);
+    changeRowKeys(14, 29, 14, 1, 2);
+    changeRowKeys(29, 42, 29, 2, 2);
+    changeRowKeys(42, 55, 42, 3, 2);
+  } else {
+    changeRowKeys(0, 14, 0, 0, 1);
+    changeRowKeys(14, 29, 14, 1, 1);
+    changeRowKeys(29, 42, 29, 2, 1);
+    changeRowKeys(42, 55, 42, 3, 1); 
+  }
+
+}
+shiftLeft.addEventListener('click', () => addKey('', 5, 0))
+shiftLeft.addEventListener('mousedown', addShift)
+shiftLeft.addEventListener('mouseup', removeShift)
+shiftRight.addEventListener('click', () => addKey('', 5, 0))
+shiftRight.addEventListener('mousedown', addShift)
+shiftRight.addEventListener('mouseup', removeShift)
+
+
 
 // вставка символов
 function addTextInTextarea(text) {
@@ -231,31 +429,35 @@ function addBackspace() {
 const backspace = document.querySelector('.Backspace');
 backspace.addEventListener('click', addBackspace);
 
-
 // включение caps
-function addCaps() {
-  const caps = document.querySelector('.CapsLock');
-  caps.classList.toggle('active-btn');
+function addCaps() {  
   addKey('', 4, 0);
   
-  for (let i = 15; i < 25; i++) {
-    capsToggle(i);
-  }
-  for (let i = 30; i < 39; i++) {
-    capsToggle(i);
-  }
-  for (let i = 43; i < 50; i++) {
-    capsToggle(i);
-  }
-}
+  caps.classList.toggle('active-btn');
 
-function capsToggle(i) { 
-    if (keys[i].innerHTML === keys[i].innerHTML.toLowerCase()) {
-      keys[i].innerHTML = keys[i].innerHTML.toUpperCase()
-    } else {
-      keys[i].innerHTML = keys[i].innerHTML.toLowerCase()
+  if (caps.classList.contains('active-btn')) {
+    for (let i = 15; i < 25; i++) {    
+      keys[i].innerHTML = keysRows[1][i - 14][2];     
     }
+    for (let i = 30; i < 39; i++) {
+      keys[i].innerHTML = keysRows[2][i - 29][2];     
+    }
+    for (let i = 43; i < 50; i++) {
+      keys[i].innerHTML = keysRows[3][i - 42][2];     
+    }
+  } else {
+    for (let i = 15; i < 25; i++) {    
+      keys[i].innerHTML = keysRows[1][i - 14][1];    
+    }
+    for (let i = 30; i < 39; i++) {
+      keys[i].innerHTML = keysRows[2][i - 29][1];    
+    }
+    for (let i = 43; i < 50; i++) {
+      keys[i].innerHTML = keysRows[3][i - 42][1];    
+    }
+  }
 }
+caps.addEventListener('click', addCaps);
 
 
 // включение остальных кнопок
