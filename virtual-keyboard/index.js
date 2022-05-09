@@ -75,7 +75,7 @@ const keysRows = [
   ],
 ];
 
-//созданиe контейнера с элементами
+// созданиe контейнера с элементами
 const container = document.createElement('div');
 const title = document.createElement('h1');
 const textarea = document.createElement('textarea');
